@@ -9,6 +9,7 @@ import sys
 import pandas as pd
 import numpy as np
 from pprint import pprint
+from datetime import datetime
 # from infer_dev import get_sql, get_output, get_template_embedding/, response_template
 app = Flask(__name__)
 
@@ -92,7 +93,8 @@ def response_template(res):
             minute = input[indx+1:indx+3]
         output = output.replace('YYYYMMDDHHMI', year+month+day+hour+minute)
     else:                   
-        output = output.replace("입력='YYYYMMDDHHMI'", '')
+        # output = output.replace("입력='YYYYMMDDHHMI'", '')
+        output = output.replace('YYYYMMDDHHMI', datetime.today().strftime('%Y%m%d%H%M'))
     response = {
         "pseudoList":[{
             "site":"COMIS",                                 
